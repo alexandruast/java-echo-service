@@ -1,0 +1,40 @@
+buildscript {
+
+    project.ext {
+        springBootVersion   		    = '1.4.3.RELEASE'
+        hibernateValidatorVersion       = '5.4.1.Final'
+        junitVersion            	    = '4.12'
+    }
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.3.RELEASE")
+    }
+}
+
+plugins {
+    id 'java'
+    id 'idea'
+    id 'org.springframework.boot' version '1.4.3.RELEASE'
+}
+
+group 'com.echo.helloworld'
+version '0.1.0'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: springBootVersion
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-jetty', version: springBootVersion
+    compile group: 'org.hibernate', name: 'hibernate-validator', version: hibernateValidatorVersion
+
+    testCompile group: 'junit', name: 'junit', version: junitVersion
+}

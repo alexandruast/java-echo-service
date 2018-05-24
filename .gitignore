@@ -1,0 +1,15 @@
+**/build/
+*.jar
+*.war
+*.ear
+
+**/.gradle/
+
+/out
+**/.idea/
+*.iws
+*.ipr
+*.iml
+
+/logs
+
