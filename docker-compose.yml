@@ -1,0 +1,6 @@
+version: '3'
+
+services:
+  fabio:
+    image: ${REGISTRY_ADDRESS}/${REGISTRY_PATH}/hello:${POD_TAG}
+    build: ./images/hello

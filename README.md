@@ -1,1 +1,1 @@
-# java-hello-rest
+# java-pod-hello-rest

@@ -1,0 +1,63 @@
+job "hello" {
+  datacenters = ["dc1"]
+  type = "service"
+  update {
+    max_parallel = 1
+    health_check     = "checks"
+    healthy_deadline = "30s"
+    auto_revert      = true
+    stagger          = "10s"
+  }
+  group "hello" {
+    count = 2
+    restart {
+      attempts = 3
+      delay    = "60s"
+      interval = "15m"
+      mode     = "delay"
+    }
+    task "hello-{{lookup('env','POD_TAG')}}" {
+      driver = "docker"
+      config {
+        image = "{{lookup('env','REGISTRY_ADDRESS')}}/{{lookup('env','REGISTRY_PATH')}}/hello:{{lookup('env','POD_TAG')}}"
+        auth {
+          server_address = "{{lookup('env','REGISTRY_ADDRESS')}}"
+          username = "{{lookup('env','REGISTRY_USERNAME')}}"
+          password = "{{lookup('env','REGISTRY_PASSWORD')}}"
+        }
+        port_map {
+          http = 8080
+        }
+        logging {
+          type = "fluentd"
+          config {
+            fluentd-address = "fluentd.service.consul:24224"
+            tag = "docker.{{lookup('env','POD_NAME')}}-{{lookup('env','POD_TAG')}}.${attr.unique.hostname}.{%raw%}{{.ID}}{%endraw%}"
+          }
+        }
+      }
+      resources {
+        memory = 100
+        network {
+          mbits = 100
+          port "http" {}
+        }
+      }
+      service {
+        name = "hello"
+        port = "http"
+        check {
+          type = "http"
+          path = "/"
+          interval = "4s"
+          timeout  = "2s"
+          check_restart {
+            limit = 3
+            grace = "10s"
+            ignore_warnings = false
+          }
+        }
+      }
+    }
+  }
+}
