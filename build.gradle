@@ -1,9 +1,9 @@
 buildscript {
 
     project.ext {
-        springBootVersion   		    = '1.4.3.RELEASE'
-        hibernateValidatorVersion       = '5.4.1.Final'
-        junitVersion            	    = '4.12'
+        springBootVersion          = '1.4.3.RELEASE'
+        hibernateValidatorVersion  = '5.4.1.Final'
+        junitVersion               = '4.12'
     }
 
     repositories {
