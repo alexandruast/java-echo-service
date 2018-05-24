@@ -1,15 +1,8 @@
-FROM openjdk:8 AS BUILD_IMAGE
-ENV APP_HOME=/root/dev/myapp/
-RUN mkdir -p $APP_HOME/src/main/java
-WORKDIR $APP_HOME
-COPY build.gradle gradlew gradlew.bat $APP_HOME
-COPY gradle $APP_HOME/gradle
-# download dependencies
-RUN ./gradlew build -x :bootRepackage -x test --continue
-COPY . .
-RUN ./gradlew build
-FROM openjdk:8-jre
-WORKDIR /root/
-COPY --from=BUILD_IMAGE /root/dev/myapp/build/libs/myapp.jar .
-EXPOSE 8080
-CMD ["java","-jar","myapp.jar"]
+FROM gradle:jdk10 as BUILDER
+COPY --chown=gradle:gradle . /home/gradle/build
+WORKDIR /home/gradle/build
+RUN gradle build
+
+FROM openjdk:10-jre-slim
+COPY --from=BUILDER /home/gradle/build/libs/hello-boot.jar /
+CMD ["java", "-jar", "hello-boot.jar"]
