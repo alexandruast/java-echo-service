@@ -1,4 +1,5 @@
 FROM gradle:jdk10 as BUILDER
+MAINTAINER Alexandru Ast <alexandru.ast@gmail.com>
 COPY --chown=gradle:gradle . /home/gradle/app
 WORKDIR /home/gradle/app
 RUN gradle build
