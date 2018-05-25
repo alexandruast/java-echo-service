@@ -5,12 +5,7 @@ WORKDIR /home/gradle/app
 RUN gradle build
 
 FROM openjdk:8u171-jre-slim
-COPY --chown=www-data:www-data --from=BUILDER /home/gradle/app/build/libs/ /var/www/
+COPY --chown=www-data:www-data --from=BUILDER /home/gradle/app/build/libs/*.jar /var/www/java.jar
 WORKDIR /var/www
 USER www-data
-CMD [ \
-  "java", \
-  "-Xmx450m", \
-  "-jar", \
-  "app.jar" \
-  ]
+CMD ["java", "-jar", "java.jar"]
