@@ -1,18 +1,18 @@
 FROM gradle:jdk8 as BUILDER
 
-COPY --chown=gradle:gradle . /home/gradle/echo
+COPY --chown=gradle:gradle . /home/gradle/app
 
-WORKDIR /home/gradle/echo
+WORKDIR /home/gradle/app
 
 RUN gradle build
 
 
 FROM openjdk:8u171-jre-slim
 
-COPY --chown=www-data:www-data --from=BUILDER /home/gradle/echo/build/libs/ /var/www/
+COPY --chown=www-data:www-data --from=BUILDER /home/gradle/app/build/libs/ /var/www/
 
 WORKDIR /var/www
 
 USER www-data
 
-CMD ["/bin/sh", "-c", "java -jar echo-*.jar"]
+CMD ["/bin/sh", "-c", "java -jar *.jar"]
