@@ -38,6 +38,3 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: junitVersion
 }
 
-def jarfile = file(new File(jar.destinationDir, ".jarfile"))
-jarfile.text = "$jar.archivePath"
-
