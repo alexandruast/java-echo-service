@@ -15,4 +15,4 @@ WORKDIR /var/www
 
 USER www-data
 
-CMD ["java", "-jar", "echo-*.jar"]
+CMD ["/bin/sh", "-c", "java -jar echo-*.jar"]
