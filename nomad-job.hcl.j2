@@ -1,4 +1,4 @@
-job "hello" {
+job "echo" {
   datacenters = ["dc1"]
   type = "service"
   update {
@@ -8,7 +8,7 @@ job "hello" {
     auto_revert      = true
     stagger          = "10s"
   }
-  group "hello" {
+  group "echo" {
     count = 1
     restart {
       attempts = 3
@@ -16,10 +16,10 @@ job "hello" {
       interval = "15m"
       mode     = "delay"
     }
-    task "hello-{{lookup('env','POD_TAG')}}" {
+    task "echo-{{lookup('env','POD_TAG')}}" {
       driver = "docker"
       config {
-        image = "{{lookup('env','REGISTRY_ADDRESS')}}/{{lookup('env','REGISTRY_PATH')}}/hello:{{lookup('env','POD_TAG')}}"
+        image = "{{lookup('env','REGISTRY_ADDRESS')}}/{{lookup('env','REGISTRY_PATH')}}/echo:{{lookup('env','POD_TAG')}}"
         auth {
           server_address = "{{lookup('env','REGISTRY_ADDRESS')}}"
           username = "{{lookup('env','REGISTRY_USERNAME')}}"
@@ -35,7 +35,7 @@ job "hello" {
           type = "fluentd"
           config {
             fluentd-address = "fluentd.service.consul:24224"
-            tag = "docker.{{lookup('env','POD_NAME')}}.hello-{{lookup('env','POD_TAG')}}.${attr.unique.hostname}.{%raw%}{{.ID}}{%endraw%}"
+            tag = "docker.{{lookup('env','POD_NAME')}}.echo-{{lookup('env','POD_TAG')}}.${attr.unique.hostname}.{%raw%}{{.ID}}{%endraw%}"
           }
         }
       }
@@ -48,9 +48,9 @@ job "hello" {
       }
       service {
         tags = [
-          "urlprefix-/hello strip=/hello"
+          "urlprefix-/echo strip=/echo"
         ]
-        name = "hello"
+        name = "echo"
         port = "http"
         check {
           type = "http"
