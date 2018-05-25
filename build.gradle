@@ -38,5 +38,5 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: junitVersion
 }
 
-file("$jar.archivePath/.jarfile").text = "$jar.archiveName"
+file("$jar.destinationDir/.jarfile").text = "$jar.archivePath"
 
