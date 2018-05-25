@@ -2,7 +2,7 @@ FROM gradle:jdk8 as BUILDER
 
 COPY --chown=gradle:gradle . /home/gradle/echo
 
-WORKDIR /home/gradle/app
+WORKDIR /home/gradle/echo
 
 RUN gradle build
 
