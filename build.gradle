@@ -36,6 +36,7 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-jetty', version: springBootVersion
     compile group: 'org.hibernate', name: 'hibernate-validator', version: hibernateValidatorVersion
     testCompile group: 'junit', name: 'junit', version: junitVersion
+}
 
 file("$archivePath/.jarfile").text = "$jar.archiveName"
 
