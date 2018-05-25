@@ -6,4 +6,4 @@ RUN gradle build
 
 FROM openjdk:8-jre-slim
 COPY --from=BUILDER /home/gradle/app/build/libs/*.jar app.jar
-CMD ["java", "-jar", "app.jar"]
+CMD ["java", "-xmx200m", "-jar", "app.jar"]
