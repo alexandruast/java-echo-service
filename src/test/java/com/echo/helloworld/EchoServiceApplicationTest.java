@@ -15,4 +15,12 @@ public class EchoServiceApplicationTest {
             throw new AssumptionViolatedException("skipping");
         }
     }
+    
+    @Test
+    public void test2() {
+        EchoServiceDemoMethod test = new EchoServiceDemoMethod();
+        int out = test.getInt(9);
+        
+        assertTrue(out == 10);
+    }
 }
