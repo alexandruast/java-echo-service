@@ -4,7 +4,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.internal.AssumptionViolatedException;
 
-public class EchoTest {
+public class EchoServiceApplicationTest {
 
     @Test
     public void test() {
