@@ -5,7 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.internal.AssumptionViolatedException;
 
 public class EchoServiceDemoClassTest {
-
+    static EchoServiceDemoClass test = new EchoServiceDemoClass();
+    
     @Test
     public void testRandomFail() {
         double r = Math.random();
@@ -15,8 +16,7 @@ public class EchoServiceDemoClassTest {
     }
     
     @Test
-    public void testAddOne() {
-        EchoServiceDemoClass test = new EchoServiceDemoClass();
+    public void testAddOne() {    
         int out = test.addOne(9);
         assertTrue(out == 10);
     }
