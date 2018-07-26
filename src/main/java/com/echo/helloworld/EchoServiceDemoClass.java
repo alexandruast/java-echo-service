@@ -1,6 +1,6 @@
 package com.echo.helloworld;
 
-public class EchoServiceApplication {
+public class EchoServiceDemoClass {
     public int addOne(int number) {
       return number + 1;
     }
