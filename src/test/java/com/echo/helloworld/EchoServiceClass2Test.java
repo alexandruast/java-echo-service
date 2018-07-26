@@ -3,11 +3,11 @@ package com.echo.helloworld;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class EchoServiceApplicationTest {
+public class EchoServiceClass2Test {
     
     @Test
     public void test2() {
-        EchoServiceDemoMethod test = new EchoServiceDemoMethod();
+        EchoServiceClass2 test = new EchoServiceClass2();
         int out = test.getInt(9);
         assertTrue(out == 10);
     }
