@@ -20,8 +20,6 @@ plugins {
     id 'java'
     id 'idea'
     id 'org.springframework.boot' version '1.4.3.RELEASE'
-    id 'jacoco'
-    id "org.sonarqube" version "2.6"
 }
 
 group 'com.echo.helloworld'
