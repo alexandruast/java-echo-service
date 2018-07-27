@@ -49,5 +49,3 @@ jacocoTestReport {
     }
 }
 
-check.dependsOn jacocoTestReport
-
