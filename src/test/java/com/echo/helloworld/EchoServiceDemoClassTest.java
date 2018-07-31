@@ -20,4 +20,10 @@ public class EchoServiceDemoClassTest {
         int out = test.addOne(9);
         assertTrue(out == 10);
     }
+    
+    @Test
+    public void testAddTwo() {    
+        int out = test.addTwo(10);
+        assertTrue(out == 12);
+    }
 }
